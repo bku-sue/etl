@@ -324,12 +324,6 @@ namespace etl
     element_type* mend;
   };
 
-  template <typename T>
-  bool operator ==(const etl::span<T>& lhs, const etl::span<T>& rhs)
-  {
-    return (lhs.begin() == rhs.begin()) && (lhs.end() == rhs.end());
-  }
-
   //*************************************************************************
 /// Template deduction guides.
 //*************************************************************************
