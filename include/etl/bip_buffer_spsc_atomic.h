@@ -295,9 +295,7 @@ namespace etl
 
         void read_commit(const span<T> &reserve)
         {
-            ETL_ASSERT(reserve == read_reserve(reserve.size()), ETL_ERROR(bip_buffer_reserve_invalid));
-
-size_type rindex = etl::distance(p_buffer, reserve.data());
+            size_type rindex = etl::distance(p_buffer, reserve.data());
             apply_read_reserve(rindex, reserve.size());
         }
 
@@ -310,8 +308,6 @@ size_type rindex = etl::distance(p_buffer, reserve.data());
 
         void write_commit(const span<T> &reserve)
         {
-            ETL_ASSERT(reserve == write_reserve(reserve.size()), ETL_ERROR(bip_buffer_reserve_invalid));
-
             size_type windex = etl::distance(p_buffer, reserve.data());
             apply_write_reserve(windex, reserve.size());
         }
