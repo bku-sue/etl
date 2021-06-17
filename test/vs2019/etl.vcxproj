@@ -1446,6 +1446,7 @@
     <ClInclude Include="..\..\include\etl\array.h" />
     <ClInclude Include="..\..\include\etl\basic_string.h" />
     <ClInclude Include="..\..\include\etl\binary.h" />
+    <ClInclude Include="..\..\include\etl\bip_buffer_spsc_atomic.h" />
     <ClInclude Include="..\..\include\etl\bitset.h" />
     <ClInclude Include="..\..\include\etl\bloom_filter.h" />
     <ClInclude Include="..\..\include\etl\char_traits.h" />
@@ -4503,6 +4504,7 @@
     <ClCompile Include="..\test_array_wrapper.cpp" />
     <ClCompile Include="..\test_atomic_std.cpp" />
     <ClCompile Include="..\test_binary.cpp" />
+    <ClCompile Include="..\test_bip_buffer_spsc_atomic.cpp" />
     <ClCompile Include="..\test_bitset.cpp" />
     <ClCompile Include="..\test_bloom_filter.cpp" />
     <ClCompile Include="..\test_bsd_checksum.cpp" />

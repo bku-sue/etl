@@ -1,5 +1,6 @@
 #!/bin/sh
 sudo ntpdate ntp.ubuntu.com
+mkdir -p build
 cd build || exit 1
 echo "ETL Tests" > etl_test_log.txt
 echo ""

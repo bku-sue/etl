@@ -47,7 +47,7 @@ namespace etl
     class bip_buffer_spsc_atomic_base
     {
     public:
-        /// The type used for determining the size of queue.
+        /// The type used for determining the size of buffer.
         typedef typename etl::size_type_lookup<MEMORY_MODEL>::type size_type;
 
         bool empty() const
@@ -278,13 +278,13 @@ namespace etl
         using base_t::apply_write_reserve;
 
     public:
-        typedef T                          value_type;      ///< The type stored in the queue.
-        typedef T&                         reference;       ///< A reference to the type used in the queue.
-        typedef const T&                   const_reference; ///< A const reference to the type used in the queue.
+        typedef T                          value_type;      ///< The type stored in the buffer.
+        typedef T&                         reference;       ///< A reference to the type used in the buffer.
+        typedef const T&                   const_reference; ///< A const reference to the type used in the buffer.
 #if ETL_CPP11_SUPPORTED
-        typedef T&&                        rvalue_reference;///< An rvalue_reference to the type used in the queue.
+        typedef T&&                        rvalue_reference;///< An rvalue_reference to the type used in the buffer.
 #endif
-        typedef typename base_t::size_type size_type;       ///< The type used for determining the size of the queue.
+        typedef typename base_t::size_type size_type;       ///< The type used for determining the size of the buffer.
 
         span<T> read_reserve(size_type max_reserve_size)
         {
@@ -332,6 +332,13 @@ namespace etl
         T* const p_buffer;
     };
 
+    //***************************************************************************
+    /// A fixed capacity bipartite buffer.
+    /// This buffer supports concurrent access by one producer and one consumer.
+    /// \tparam T            The type this buffer should support.
+    /// \tparam SIZE         The maximum capacity of the buffer.
+    /// \tparam MEMORY_MODEL The memory model for the buffer. Determines the type of the internal counter variables.
+    //***************************************************************************
     template <typename T, const size_t SIZE, const size_t MEMORY_MODEL = etl::memory_model::MEMORY_MODEL_LARGE>
     class bip_buffer_spsc_atomic : public ibip_buffer_spsc_atomic<T, MEMORY_MODEL>
     {
@@ -342,10 +349,10 @@ namespace etl
         typedef typename base_t::size_type size_type;
 
     private:
-        static const size_type RESERVED_SIZE = size_type(SIZE + 1);
+        static const size_type RESERVED_SIZE = size_type(SIZE);
 
     public:
-        ETL_STATIC_ASSERT((SIZE <= (etl::integral_limits<size_type>::max - 1)), "Size too large for memory model");
+        ETL_STATIC_ASSERT((SIZE <= (etl::integral_limits<size_type>::max)), "Size too large for memory model");
 
         static const size_type MAX_SIZE = size_type(SIZE);
 

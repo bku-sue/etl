@@ -492,6 +492,9 @@
     <ClInclude Include="..\..\include\etl\memory_model.h">
       <Filter>ETL\Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\etl\bip_buffer_spsc_atomic.h">
+      <Filter>ETL\Utilities</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\unittest-cpp\UnitTest++\XmlTestReporter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2469,6 +2472,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\test_mean.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test_bip_buffer_spsc_atomic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\sanity-check\correlation.h.t.cpp">
